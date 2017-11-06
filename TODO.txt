@@ -1,0 +1,4 @@
+- REWRITE EVERYTHING WITH CSV READER
+- get license
+- redo the data csv's
+- wiki documentation
