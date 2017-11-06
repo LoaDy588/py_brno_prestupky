@@ -1,6 +1,7 @@
 import time
 import requests
 import json
+import csv
 
 
 def load_save():
@@ -13,6 +14,7 @@ def save_position(position, step):
     save = open("save", "w")
     save.write(str(position) + "\n")
     save.write(str(step) + "\n")
+    save.close()
 
 
 def get_response(query):
@@ -34,8 +36,7 @@ def extract_location(response):
 
 def get_location(data):
     response = get_response(data)
-    lat, lon = extract_location(response)
-    return data[:-1]+";"+lat+";"+lon+"\n"
+    return extract_location(response)
 
 
 def main():
@@ -44,11 +45,13 @@ def main():
     data_lines = data.readlines()
     data.close()
     output = open("data/address_coords.csv", "a", encoding="cp1250")
+    csv_writer = csv.writer(output, delimiter=";", quoting = csv.QUOTE_NONNUMERIC)
     for i in range(step):
         if position < len(data_lines):
             line = data_lines[position]
-            newline = get_location(line)
-            output.write(newline)
+            lat, lon = get_location(line)
+            newline = [line[:-1], lat, lon]
+            csv_writer.writerow(newline)
             position += 1
             time.sleep(1)
             print("Progress:" + str(i/step))
