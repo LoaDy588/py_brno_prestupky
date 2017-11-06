@@ -1,12 +1,15 @@
+import csv
+
+
 def main():
     data = open("raw/joined_clean.csv", "r", encoding="cp1250")
     output = open("raw/address.csv", "w", encoding="cp1250")
+    csv_reader = csv.reader(data, delimiter=";", quoting=csv.QUOTE_NONNUMERIC)
     address_list = []
-    for line in data:
-        line_split = line.split(";")
-        if not line_split[1] in address_list:
-            print(line_split[1])
-            address_list.append(line_split[1])
+    for row in csv_reader:
+        if not row[1] in address_list:
+            print(row[1])
+            address_list.append(row[1])
     data.close()
     for address in address_list:
         output.write(address + "\n")

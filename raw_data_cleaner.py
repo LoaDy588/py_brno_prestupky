@@ -1,9 +1,14 @@
+import csv
+
+
 def join_files(files, out_file):
     file_out = open(out_file, "w", encoding="cp1250")
+    csv_writer = csv.writer(file_out, delimiter=';', quoting=csv.QUOTE_NONNUMERIC)
     for item in files:
         file_in = open(item, "r", encoding="cp1250")
-        for line in file_in:
-            file_out.write(line)
+        csv_reader = csv.reader(file_in, delimiter=';', quoting=csv.QUOTE_NONNUMERIC)
+        for row in csv_reader:
+            csv_writer.writerow(row)
         file_in.close()
     file_out.close()
 
@@ -11,21 +16,21 @@ def join_files(files, out_file):
 def clean_file(in_file, out_file):
     file_in = open(in_file, "r", encoding="cp1250")
     file_out = open(out_file, "w", encoding="cp1250")
+    csv_writer = csv.writer(file_out, delimiter=';', quoting=csv.QUOTE_NONNUMERIC)
     for line in file_in:
         if len(line) >= 60:
-            clean = clean_line(line)
-            if clean[-2:] == "\n\n":
-                file_out.write(clean[:-1])
+            data = line.split(";")
+            if data[2][-2:] == "\n\n":
+                clean = [data[0], data[1], data[2][:-2]]
+            elif data[2][-1:] == "\n":
+                clean = [data[0], data[1], data[2][:-1]]
             else:
-                file_out.write(clean)
+                clean = [data[0], data[1], data[2]]
+            csv_writer.writerow(clean)
+        else:
+            continue
     file_in.close()
     file_out.close()
-
-
-def clean_line(line):
-    data = line.split(";")
-    new = data[0]+";"+data[1]+";"+data[2]+"\n"
-    return new
 
 
 def main():

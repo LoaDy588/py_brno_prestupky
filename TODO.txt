@@ -1,4 +1,6 @@
-- REWRITE EVERYTHING WITH CSV READER
+- rewrite join_address_data and process_address_list with csv reader
 - get license
 - redo the data csv's
 - wiki documentation
+
+notes:
