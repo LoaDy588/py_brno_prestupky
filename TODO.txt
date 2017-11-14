@@ -1,6 +1,9 @@
 - find suitable license
 - wiki documentation
-- redo /data files
 - VISUALIZATION
+- go through the prestupky manually, only 115 types(many probably repeated)
+- visualization probably in HTML/JS app?
+- visualization with traffic/without traffic, by type/group?
+- visualization by day, type by day
 
 notes:

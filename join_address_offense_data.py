@@ -15,6 +15,10 @@ def load_address(file_location):
     return address_dict
 
 
+def load_offense(file_location):
+    return "foobar"
+
+
 def main():
     address_dict = load_address("data/address_coords.csv")
     data = open("raw/joined_clean.csv", "r", encoding="cp1250")
