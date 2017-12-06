@@ -1,7 +1,6 @@
 - find suitable license
 - wiki documentation
 - VISUALIZATION
-- graphs
 
 notes:
 - visualization probably in HTML/JS app?
