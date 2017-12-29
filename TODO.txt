@@ -1,6 +1,0 @@
-- find suitable license
-- wiki documentation
-- VISUALIZATION
-
-notes:
-- visualization probably in HTML/JS app?

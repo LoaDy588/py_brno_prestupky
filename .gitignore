@@ -1,7 +1,4 @@
 # ignore test folders, files
-data/
-output/
-raw/
 test.py
 
 # Byte-compiled / optimized / DLL files
